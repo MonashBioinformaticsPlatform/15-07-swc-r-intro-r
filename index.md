@@ -14,6 +14,8 @@ We use R in our lessons because:
 2.  it's free, well-documented, and runs almost everywhere;
 3.  it has a large (and growing) user base among scientists; and
 4.  it has a large library of external packages available for performing diverse tasks.
+    * Statistics focus.
+    * Bioconductor for bioinformatics tasks. Several popular Bioconductor packages were developed in Melbourne at the Walter & Eliza Hall Institute, so local expertise is available.
 
 But the two most important things are
 to use whatever language your colleagues are using,
@@ -27,6 +29,10 @@ and to use that language *well*.
 >
 > Though not required, we often use RStudio when teaching this lesson.
 > You can find our introduction to RStudio [here](01-supp-intro-rstudio.html).
+
+## Data
+
+*   [data.zip](data.zip)
 
 ## Topics
 

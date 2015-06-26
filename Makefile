@@ -42,7 +42,7 @@ clean :
 	@rm -rf $$(find . -name '*~' -print)
 
 ## preview  : Build website locally for checking.
-preview : $(DST_ALL)
+preview : $(DST_ALL) data.zip
 
 # Pattern to build a generic page.
 %.html : %.md _layouts/page.html $(FILTERS)
@@ -74,3 +74,7 @@ settings :
 unittest: tools/check.py tools/validation_helpers.py tools/test_check.py
 	cd tools/ && python2 test_check.py
 	cd tools/ && python3 test_check.py
+
+data.zip: data/*
+	if [ -e data.zip ]; then rm data.zip; fi
+	zip -r data.zip data
