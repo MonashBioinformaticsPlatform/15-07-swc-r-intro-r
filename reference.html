@@ -40,6 +40,14 @@
 <p>List objects in current environment <code>ls()</code></p>
 <p>Remove objects in current environment <code>rm(x)</code></p>
 <p>Remove all objects from current environment <code>rm(list = ls())</code></p>
+<h2 id="data-types">Data types</h2>
+<p>What type is something: <code>class(x)</code></p>
+<ul>
+<li>“numeric”, “character”, “factor”, “integer”, “logical” - Vectors, containing a list of things, all the same type of thing.</li>
+<li>“matrix” - A 2D collection of things, all the same type of thing.</li>
+<li>“data.frame” - A 2D data structure. A sequence of records (rows), each having certain properties (columns). Each column is all the same type of thing, but different columns can contain different types of thing.</li>
+</ul>
+<p>Insist that a thing have a certain type: <code>as.vector(x)</code> <code>as.matrix(x)</code> <code>as.data.frame(x)</code></p>
 <h2 id="control-flow">Control Flow</h2>
 <ul>
 <li><p>Create a contitional using <code>if</code>, <code>else if</code>, and <code>else</code></p>

@@ -23,6 +23,21 @@ Remove objects in current environment
 Remove all objects from current environment
 `rm(list = ls())`
 
+## Data types
+
+What type is something:
+`class(x)`
+
+- "numeric", "character", "factor", "integer", "logical" - Vectors, containing a list of things, all the same type of thing.
+- "matrix" - A 2D collection of things, all the same type of thing.
+- "data.frame" - A 2D data structure. A sequence of records (rows), each having certain properties (columns). Each column is all the same type of thing, but different columns can contain different types of thing.
+
+Insist that a thing have a certain type:
+`as.vector(x)`
+`as.matrix(x)`
+`as.data.frame(x)`
+
+
 ## Control Flow
 
 - Create a contitional using `if`, `else if`, and `else`
