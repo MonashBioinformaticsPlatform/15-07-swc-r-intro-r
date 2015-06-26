@@ -23,14 +23,16 @@ Remove objects in current environment
 Remove all objects from current environment
 `rm(list = ls())`
 
-## Data types
+## Data types and structures
 
-What type is something:
+What you can do with an object largely depends on what "type" it is.
+
+Check what type of thing you are dealing with:
 `class(x)`
 
-- "numeric", "character", "factor", "integer", "logical" - Vectors, containing a list of things, all the same type of thing.
-- "matrix" - A 2D collection of things, all the same type of thing.
-- "data.frame" - A 2D data structure. A sequence of records (rows), each having certain properties (columns). Each column is all the same type of thing, but different columns can contain different types of thing.
+- "numeric", "character", "factor", "integer", "logical" - Vectors, containing a list of things all of the same basic type. A 1D data structure.
+- "matrix" - Matrices, a rectangular 2D data structure, elements are all of the same basic type.
+- "data.frame" - Another rectangular 2D data structure. A sequence of records (rows), each having certain attributes (columns). Each column is all the same type of thing, but different columns can contain different types of thing.
 
 Insist that a thing have a certain type:
 `as.vector(x)`
