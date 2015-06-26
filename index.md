@@ -1,6 +1,6 @@
 ---
 layout: lesson
-title: Programming with R
+title: Programming with R, Monash University, July 2015
 ---
 The best way to learn how to program is to do something useful,
 so this introduction to R is built around a common scientific task:
