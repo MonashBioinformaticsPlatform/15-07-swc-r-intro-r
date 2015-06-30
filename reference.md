@@ -211,3 +211,27 @@ string
 
 while loop
 :   A loop that keeps executing as long as some condition is true. See also: [for loop](#for-loop).
+
+
+## Next steps
+
+- Look at the `ggplot2` package for high quality graphics. The syntax is a little odd but the online documentation has many examples.
+
+- Bioconductor (`bioconductor.org`) is a collection of bioinformatics related packages, including the popular `limma` and `edgeR` packages for RNA-Seq analysis developed at the Walter and Eliza Hall Institute.
+
+Stackoverflow-style sites are great for getting help:
+
+- `support.bioconductor.org` for bioconductor related questions.
+- `biostars.org` for general bioinformatics questions.
+- `stats.stackexchange.com` for statistics questions.
+- `stackoverflow.com` for general programming questions.
+
+Books:
+
+- "The R Book" by Michael J. Crawley for general reference.
+
+- "Linear Models with R" and "Extending the Linear Model with R" by Julian J. Faraway cover linear models, with many practical examples. Linear models are a central part of R, many familiar statistical tests can be expressed in terms of a linear model.
+
+Other languages:
+
+- Python is another popular language in the scientific community.
