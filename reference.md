@@ -9,19 +9,17 @@ subtitle: Reference
 - `# this is a comment in R`
 - Use `x <- 3` to assign a value, `3`,  to a variable, `x`
 - R counts from 1, unlike many other programming languages (e.g., Python)
-- `length(thing)` returns the number of elements contained in the variable
-  `collection`
 - `c(value1, value2, value3)` creates a vector
-- `container[i]` selects the i'th element from the variable `container`
+- `length(vec)` returns the number of elements contained in the variable
+  `vec`, if it is a vector.
+- `vec[i]` selects the i'th element from the variable `vec`, if it is a vector.
+- `mat[i,j]` selects the cell at the i'th row and j'th column of `mat`, if `mat` is a matrix or data frame.
 
-List objects in current environment
-`ls()`
+- `print(thing)` print the variable `thing` to the console.
+- `cat(thing1, thing2, "\n")` another more flexible way to print things. `"\n"` is the "newline" character, it means start a new line of output.
 
-Remove objects in current environment
-`rm(x)`
+- `?name` get help on the function called `name`
 
-Remove all objects from current environment
-`rm(list = ls())`
 
 ## Data types and structures
 
@@ -30,9 +28,13 @@ What you can do with an object largely depends on what "type" it is.
 Check what type of thing you are dealing with:
 `class(x)`
 
-- "numeric", "character", "factor", "integer", "logical" - Vectors, containing a list of things all of the same basic type. A 1D data structure.
-- "matrix" - Matrices, a rectangular 2D data structure, elements are all of the same basic type.
-- "data.frame" - Another rectangular 2D data structure. A sequence of records (rows), each having certain attributes (columns). Each column is all the same type of thing, but different columns can contain different types of thing.
+- "numeric", "character", "factor", "integer", "logical" - Vectors, containing a list of things all of the same basic type. In R, a single value is a vector with length 1.
+
+- "matrix" - Matrices, a tabular 2D data structure, elements are all of the same basic type.
+
+- "list" - A list of things. Unlike vectors, lists can contain different types of things, and can contain other container data structures. If a function needs to return several different things of different types, a list is a great container to put them all in.
+
+- "data.frame" - Another tabular 2D data structure. A sequence of records (rows), each having certain attributes (columns). Each column is all the same type of thing, but different columns can contain different types of thing. You could think of a data.frame as a *list* of column *vectors*.
 
 Insist that a thing have a certain type:
 `as.vector(x)`
@@ -42,72 +44,94 @@ Insist that a thing have a certain type:
 
 ## Control Flow
 
+- create a `for` loop to process elements in a collection one at a time
+
+        for (i in 1:5) {
+          print(i)
+        }
+
+    This will print:
+
+        1
+        2
+        3
+        4
+        5
+
 - Create a contitional using `if`, `else if`, and `else`
 
-		if(x > 0){
+		if (x > 0) {
 			print("value is positive")
-		} else if (x < 0){
+		} else if (x < 0) {
 			print("value is negative")
 		} else{
 			print("value is neither positive nor negative")
 		}
 
-- create a `for` loop to process elements in a collection one at a time
 
-		for (i in 1:5) {
-			print(i)
-		}
+- equal: Use `==` to test for equality
+    - `3 == 3`, will return `TRUE`,
+    - `'apple' == 'orange'` will return `FALSE`
 
-This will print:
+- not-equal: Use `!=` to test for non-equality
+    - `3 != 3` will return `FALSE`
+    - `'apple' != 'orange'` will return `TRUE`
 
-		1
-		2
-		3
-		4
-		5
+- other comparisons: `<`, `>`, `<=`, `>=`  
 
+- and: `X & Y` is `TRUE` if both X and Y are true
 
-- Use `==` to test for equality
-  - `3 == 3`, will return `TRUE`,
-  - `'apple' == 'orange'` will return `FALSE`
-- `X & Y` is `TRUE` is both X and Y are true
-- `X | Y` is `TRUE` if either X or Y, or both are true
+- or: `X | Y` is `TRUE` if either X or Y, or both are true
+
+- not: `!X` is `TRUE` if X is `FALSE` and vice versa
+
 
 ## Functions
 
 - Defining a function:
 
-		is_positive <- function(integer_value){
-			if(integer_value > 0){
-			   TRUE
-			else{
-			   FALSE
-			{
-		}
+        is_positive <- function(value) {
+            if (value > 0) {
+                return(TRUE)
+            } else {
+                return(FALSE)
+            }
+        }
 
-In R, the last executed line of a function is automatically returned
+- Use `return` to return a value. (Alternatively, in R, the last executed line of a function is automatically returned.)
 
 - Specifying a default value for a function argrment
 
-		increment_me <- function(value_to_increment, value_to_increment_by = 1){
-			value_to_increment + value_to_increment_by
+		increment_me <- function(value_to_increment, value_to_increment_by = 1) {
+			return(value_to_increment + value_to_increment_by)
 		}
 
-`increment_me(4)`, will return 5
+    `increment_me(4)` will return 5
 
-`intrement_me(4, 6)`, will return 10
+    `intrement_me(4, 6)` will return 10
 
 - Call a function by using `function_name(function_arguments)`
 
-	- apply family of functions:
+- The apply family of functions are sometimes useful as an alternative to `for` loops:
 
-			apply()
-			sapply()
-			lapply()
-			mapply()
+    `apply()`
+    `sapply()`
+    `lapply()`
+    `mapply()`
 
-`apply(dat, MARGIN = 2, mean)`
-will return the average (`mean`) of each column in `dat`
+    `apply(dat, MARGIN = 2, mean)`
+    will return the average (`mean`) of each column in `dat`
+
+## .R files
+
+- Run all the code in a .R file with
+
+    `source("filename.R")`
+
+- From bash, run a .R file with
+
+    `Rscript filename.R`
+
 
 ## Packages
 - Install package by using `install.packages("package-name")`
@@ -129,13 +153,10 @@ comment
 :   A remark in a program that is intended to help human readers understand what is going on, but is ignored by the computer. Comments in Python, R, and the Unix shell start with a `#` character and run to the end of the line; comments in SQL start with `--`, and other languages have other conventions.
 
 conditional statement
-:   A statement in a program that might or might not be executed depending on whether a test is true or false.
+:   A statement in a program that might or might not be executed depending on whether a test is true or false. In R, these are `if` statements.
 
 documentation
 :   Human-language text written to explain what software does, how it works, or how to use it.
-
-encapsulation
-:   The practice of hiding something's implementation details so that the rest of a program can worry about *what* it does rather than *how* it does it.
 
 for loop
 :   A loop that is executed once for each value in some kind of set, list, or range. See also: [while loop](#while-loop).
@@ -156,7 +177,7 @@ loop variable
 :   The variable that keeps track of the progress of the loop.
 
 notional machine
-:   An abstraction of a computer used to think about what it can and will do.
+:   An abstraction of a computer used to think about what it can and will do. Your "mental model".
 
 parameter
 :   A variable named in the function's declaration that is used to hold a value passed into the call. The term is often used interchangeably (and inconsistently) with [argument](#argument).
@@ -168,7 +189,7 @@ return statement
 :   A statement that causes a function to stop executing and return a value to its caller immediately.
 
 shape (of an array)
-:   An array's dimensions, represented as a vector. For example, a 5&times;3 array's shape is `(5,3)`.
+:   An array's dimensions, represented as a vector. For example, a 5&times;3 array's shape is `(5,3)`. In R we get the shape of a matrix or data frame with `dim`, and the length of a vector with `length`.
 
 silent failure
 :   Failing without producing any warning messages. Silent failures are hard to detect and debug.
@@ -186,7 +207,7 @@ standard output (stdout)
 :   A process's default output stream. In interactive command-line applications, data sent to standard output is displayed on the screen; in a [pipe](#pipe), it is passed to the [standard input](#standard-input) of the next process.
 
 string
-:   Short for "character string", a [sequence](#sequence) of zero or more characters.
+:   Short for "character string", a [sequence](#sequence) of zero or more characters. In R, this is the "character" data type.
 
 while loop
 :   A loop that keeps executing as long as some condition is true. See also: [for loop](#for-loop).

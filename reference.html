@@ -33,81 +33,88 @@
 <li><code># this is a comment in R</code></li>
 <li>Use <code>x &lt;- 3</code> to assign a value, <code>3</code>, to a variable, <code>x</code></li>
 <li>R counts from 1, unlike many other programming languages (e.g., Python)</li>
-<li><code>length(thing)</code> returns the number of elements contained in the variable <code>collection</code></li>
 <li><code>c(value1, value2, value3)</code> creates a vector</li>
-<li><code>container[i]</code> selects the i’th element from the variable <code>container</code></li>
+<li><code>length(vec)</code> returns the number of elements contained in the variable <code>vec</code>, if it is a vector.</li>
+<li><code>vec[i]</code> selects the i’th element from the variable <code>vec</code>, if it is a vector.</li>
+<li><p><code>mat[i,j]</code> selects the cell at the i’th row and j’th column of <code>mat</code>, if <code>mat</code> is a matrix or data frame.</p></li>
+<li><code>print(thing)</code> print the variable <code>thing</code> to the console.</li>
+<li><p><code>cat(thing1, thing2, &quot;\n&quot;)</code> another more flexible way to print things. <code>&quot;\n&quot;</code> is the “newline” character, it means start a new line of output.</p></li>
+<li><p><code>?name</code> get help on the function called <code>name</code></p></li>
 </ul>
-<p>List objects in current environment <code>ls()</code></p>
-<p>Remove objects in current environment <code>rm(x)</code></p>
-<p>Remove all objects from current environment <code>rm(list = ls())</code></p>
 <h2 id="data-types-and-structures">Data types and structures</h2>
 <p>What you can do with an object largely depends on what “type” it is.</p>
 <p>Check what type of thing you are dealing with: <code>class(x)</code></p>
 <ul>
-<li>“numeric”, “character”, “factor”, “integer”, “logical” - Vectors, containing a list of things all of the same basic type. A 1D data structure.</li>
-<li>“matrix” - Matrices, a rectangular 2D data structure, elements are all of the same basic type.</li>
-<li>“data.frame” - Another rectangular 2D data structure. A sequence of records (rows), each having certain attributes (columns). Each column is all the same type of thing, but different columns can contain different types of thing.</li>
+<li><p>“numeric”, “character”, “factor”, “integer”, “logical” - Vectors, containing a list of things all of the same basic type. In R, a single value is a vector with length 1.</p></li>
+<li><p>“matrix” - Matrices, a tabular 2D data structure, elements are all of the same basic type.</p></li>
+<li><p>“list” - A list of things. Unlike vectors, lists can contain different types of things, and can contain other container data structures. If a function needs to return several different things of different types, a list is a great container to put them all in.</p></li>
+<li><p>“data.frame” - Another tabular 2D data structure. A sequence of records (rows), each having certain attributes (columns). Each column is all the same type of thing, but different columns can contain different types of thing. You could think of a data.frame as a <em>list</em> of column <em>vectors</em>.</p></li>
 </ul>
 <p>Insist that a thing have a certain type: <code>as.vector(x)</code> <code>as.matrix(x)</code> <code>as.data.frame(x)</code></p>
 <h2 id="control-flow">Control Flow</h2>
 <ul>
+<li><p>create a <code>for</code> loop to process elements in a collection one at a time</p>
+<pre><code>for (i in 1:5) {
+  print(i)
+}</code></pre>
+<p>This will print:</p>
+<pre><code>1
+2
+3
+4
+5</code></pre></li>
 <li><p>Create a contitional using <code>if</code>, <code>else if</code>, and <code>else</code></p>
-<pre><code>if(x &gt; 0){
+<pre><code>if (x &gt; 0) {
     print(&quot;value is positive&quot;)
-} else if (x &lt; 0){
+} else if (x &lt; 0) {
     print(&quot;value is negative&quot;)
 } else{
     print(&quot;value is neither positive nor negative&quot;)
 }</code></pre></li>
-<li><p>create a <code>for</code> loop to process elements in a collection one at a time</p>
-<pre><code>for (i in 1:5) {
-    print(i)
-}</code></pre></li>
-</ul>
-<p>This will print:</p>
-<pre><code>    1
-    2
-    3
-    4
-    5</code></pre>
+<li>equal: Use <code>==</code> to test for equality
 <ul>
-<li>Use <code>==</code> to test for equality</li>
 <li><code>3 == 3</code>, will return <code>TRUE</code>,</li>
 <li><code>'apple' == 'orange'</code> will return <code>FALSE</code></li>
-<li><code>X &amp; Y</code> is <code>TRUE</code> is both X and Y are true</li>
-<li><code>X | Y</code> is <code>TRUE</code> if either X or Y, or both are true</li>
+</ul></li>
+<li>not-equal: Use <code>!=</code> to test for non-equality
+<ul>
+<li><code>3 != 3</code> will return <code>FALSE</code></li>
+<li><code>'apple' != 'orange'</code> will return <code>TRUE</code></li>
+</ul></li>
+<li><p>other comparisons: <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></p></li>
+<li><p>and: <code>X &amp; Y</code> is <code>TRUE</code> if both X and Y are true</p></li>
+<li><p>or: <code>X | Y</code> is <code>TRUE</code> if either X or Y, or both are true</p></li>
+<li><p>not: <code>!X</code> is <code>TRUE</code> if X is <code>FALSE</code> and vice versa</p></li>
 </ul>
 <h2 id="functions">Functions</h2>
 <ul>
 <li><p>Defining a function:</p>
-<pre><code>is_positive &lt;- function(integer_value){
-    if(integer_value &gt; 0){
-       TRUE
-    else{
-       FALSE
-    {
+<pre><code>is_positive &lt;- function(value) {
+    if (value &gt; 0) {
+        return(TRUE)
+    } else {
+        return(FALSE)
+    }
 }</code></pre></li>
-</ul>
-<p>In R, the last executed line of a function is automatically returned</p>
-<ul>
+<li><p>Use <code>return</code> to return a value. (Alternatively, in R, the last executed line of a function is automatically returned.)</p></li>
 <li><p>Specifying a default value for a function argrment</p>
-<pre><code>increment_me &lt;- function(value_to_increment, value_to_increment_by = 1){
-    value_to_increment + value_to_increment_by
-}</code></pre></li>
+<pre><code>increment_me &lt;- function(value_to_increment, value_to_increment_by = 1) {
+    return(value_to_increment + value_to_increment_by)
+}</code></pre>
+<p><code>increment_me(4)</code> will return 5</p>
+<p><code>intrement_me(4, 6)</code> will return 10</p></li>
+<li><p>Call a function by using <code>function_name(function_arguments)</code></p></li>
+<li><p>The apply family of functions are sometimes useful as an alternative to <code>for</code> loops:</p>
+<p><code>apply()</code> <code>sapply()</code> <code>lapply()</code> <code>mapply()</code></p>
+<p><code>apply(dat, MARGIN = 2, mean)</code> will return the average (<code>mean</code>) of each column in <code>dat</code></p></li>
 </ul>
-<p><code>increment_me(4)</code>, will return 5</p>
-<p><code>intrement_me(4, 6)</code>, will return 10</p>
+<h2 id="r-files">.R files</h2>
 <ul>
-<li><p>Call a function by using <code>function_name(function_arguments)</code></p>
-<ul>
-<li><p>apply family of functions:</p>
-<pre><code>apply()
-sapply()
-lapply()
-mapply()</code></pre></li>
-</ul></li>
+<li><p>Run all the code in a .R file with</p>
+<p><code>source(&quot;filename.R&quot;)</code></p></li>
+<li><p>From bash, run a .R file with</p>
+<p><code>Rscript filename.R</code></p></li>
 </ul>
-<p><code>apply(dat, MARGIN = 2, mean)</code> will return the average (<code>mean</code>) of each column in <code>dat</code></p>
 <h2 id="packages">Packages</h2>
 <ul>
 <li>Install package by using <code>install.packages(&quot;package-name&quot;)</code></li>
@@ -129,13 +136,10 @@ mapply()</code></pre></li>
 <dd>A remark in a program that is intended to help human readers understand what is going on, but is ignored by the computer. Comments in Python, R, and the Unix shell start with a <code>#</code> character and run to the end of the line; comments in SQL start with <code>--</code>, and other languages have other conventions.
 </dd>
 <dt><span id="conditional-statement">conditional statement</span></dt>
-<dd>A statement in a program that might or might not be executed depending on whether a test is true or false.
+<dd>A statement in a program that might or might not be executed depending on whether a test is true or false. In R, these are <code>if</code> statements.
 </dd>
 <dt><span id="documentation">documentation</span></dt>
 <dd>Human-language text written to explain what software does, how it works, or how to use it.
-</dd>
-<dt><span id="encapsulation">encapsulation</span></dt>
-<dd>The practice of hiding something’s implementation details so that the rest of a program can worry about <em>what</em> it does rather than <em>how</em> it does it.
 </dd>
 <dt><span id="for-loop">for loop</span></dt>
 <dd>A loop that is executed once for each value in some kind of set, list, or range. See also: <a href="#while-loop">while loop</a>.
@@ -156,7 +160,7 @@ mapply()</code></pre></li>
 <dd>The variable that keeps track of the progress of the loop.
 </dd>
 <dt><span id="notional-machine">notional machine</span></dt>
-<dd>An abstraction of a computer used to think about what it can and will do.
+<dd>An abstraction of a computer used to think about what it can and will do. Your “mental model”.
 </dd>
 <dt><span id="parameter">parameter</span></dt>
 <dd>A variable named in the function’s declaration that is used to hold a value passed into the call. The term is often used interchangeably (and inconsistently) with <a href="#argument">argument</a>.
@@ -168,7 +172,7 @@ mapply()</code></pre></li>
 <dd>A statement that causes a function to stop executing and return a value to its caller immediately.
 </dd>
 <dt><span id="shape-(of-an-array)">shape (of an array)</span></dt>
-<dd>An array’s dimensions, represented as a vector. For example, a 5×3 array’s shape is <code>(5,3)</code>.
+<dd>An array’s dimensions, represented as a vector. For example, a 5×3 array’s shape is <code>(5,3)</code>. In R we get the shape of a matrix or data frame with <code>dim</code>, and the length of a vector with <code>length</code>.
 </dd>
 <dt><span id="silent-failure">silent failure</span></dt>
 <dd>Failing without producing any warning messages. Silent failures are hard to detect and debug.
@@ -186,7 +190,7 @@ mapply()</code></pre></li>
 <dd>A process’s default output stream. In interactive command-line applications, data sent to standard output is displayed on the screen; in a <a href="#pipe">pipe</a>, it is passed to the <a href="#standard-input">standard input</a> of the next process.
 </dd>
 <dt><span id="string">string</span></dt>
-<dd>Short for “character string”, a <a href="#sequence">sequence</a> of zero or more characters.
+<dd>Short for “character string”, a <a href="#sequence">sequence</a> of zero or more characters. In R, this is the “character” data type.
 </dd>
 <dt><span id="while-loop">while loop</span></dt>
 <dd>A loop that keeps executing as long as some condition is true. See also: <a href="#for-loop">for loop</a>.
