@@ -165,13 +165,10 @@ function body
 :   The statements that are executed inside a function.
 
 function call
-:   A use of a function in another piece of software.
-
-function composition
-:   The immediate application of one function to the result of another, such as `f(g(x))`.
+:   A use of a function in another piece of software, such as the R console or another function.
 
 index
-:   A subscript that specifies the location of a single value in a collection, such as a single pixel in an image.
+:   In mathematics, a subscript that specifies the location of a single value in a collection, such as a single pixel in an image. In R, data is indexed using square brackets `[ ]`.
 
 loop variable
 :   The variable that keeps track of the progress of the loop.
@@ -217,14 +214,14 @@ while loop
 
 - Look at the `ggplot2` package for high quality graphics. The syntax is a little odd but the online documentation has many examples.
 
-- Bioconductor (`bioconductor.org`) is a collection of bioinformatics related packages, including the popular `limma` and `edgeR` packages for RNA-Seq analysis developed at the Walter and Eliza Hall Institute.
+- [Bioconductor](http://bioconductor.org) is a collection of bioinformatics related packages, including the popular `limma` and `edgeR` packages for RNA-Seq analysis developed at the Walter and Eliza Hall Institute.
 
 Stackoverflow-style sites are great for getting help:
 
-- `support.bioconductor.org` for bioconductor related questions.
-- `biostars.org` for general bioinformatics questions.
-- `stats.stackexchange.com` for statistics questions.
-- `stackoverflow.com` for general programming questions.
+- [support.bioconductor.org](https://support.bioconductor.org) for bioconductor related questions.
+- [biostars.org](https://biostars.org) for general bioinformatics questions.
+- [stats.stackexchange.com](http://stats.stackexchange.com) for statistics questions.
+- [stackoverflow.com](http://stackoverflow.com) for general programming questions.
 
 Books:
 
